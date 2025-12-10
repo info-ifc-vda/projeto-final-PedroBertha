@@ -12,7 +12,7 @@ public class Cajado extends Arma {
 
         if (r.nextInt(100) < 40) {
             System.out.println("→ Magia Arcana Explode no inimigo!");
-            return danoBase + 15;
+            return danoBase + 50;
         }
 
         return danoBase;

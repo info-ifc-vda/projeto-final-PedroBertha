@@ -10,9 +10,9 @@ public class Arco extends Arma {
     public int calcularDanoExtra() {
         Random r = new Random();
 
-        if (r.nextInt(100) < 25) {
+        if (r.nextInt(100) < 40) {
             System.out.println("→ O tiro perfura a defesa!");
-            return danoBase + 5;
+            return danoBase + 55;
         }
 
         return danoBase;

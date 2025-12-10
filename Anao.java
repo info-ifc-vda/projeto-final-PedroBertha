@@ -6,7 +6,7 @@ public class Anao extends Combatente {
 
     public Anao(String nome, int nivel) {
         super(nome, nivel);
-        this.defesa += 5;
+        this.defesa += 30;
     }
 
     @Override
@@ -14,7 +14,7 @@ public class Anao extends Combatente {
         
         Random r = new Random();
 
-        int dano = this.ataque + r.nextInt(10);
+        int dano = this.ataque + r.nextInt(15);
 
         if (arma != null) {
             dano += arma.calcularDanoExtra();

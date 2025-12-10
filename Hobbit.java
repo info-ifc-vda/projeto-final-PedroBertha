@@ -12,7 +12,7 @@ public class Hobbit extends Combatente {
     public void atacar(Combatente alvo) {
         Random r = new Random();
 
-        int dano = this.ataque + r.nextInt(4);
+        int dano = this.ataque + r.nextInt(5);
 
         if (arma != null) {
             dano += arma.calcularDanoExtra();

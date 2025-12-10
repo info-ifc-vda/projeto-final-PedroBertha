@@ -1,5 +1,4 @@
 import java.util.Random;
-// package entidades;
 
 public class Humano extends Combatente {
 
@@ -9,12 +8,9 @@ public class Humano extends Combatente {
 
     @Override
     public void atacar(Combatente alvo) {
-        // --- LÓGICA: ISILDUR VS SAURON (APENAS O ORIGINAL) ---
         
         boolean temEspada = (this.arma instanceof Espada);
         
-        // CORREÇÃO: Verifica se é o Sauron ORIGINAL pelo nome
-        // Se for o Morgoth, isso dará 'false' e o ataque será normal
         boolean alvoEhSauron = (alvo instanceof Sauron) && alvo.getNome().contains("Sauron");
 
         if (temEspada && alvoEhSauron) {
@@ -34,7 +30,6 @@ public class Humano extends Combatente {
             }
         }
 
-        // --- ATAQUE NORMAL (MORGOTH CAI AQUI) ---
         int danoArma = 0;
         if (this.arma != null) danoArma = this.arma.calcularDanoExtra();
 

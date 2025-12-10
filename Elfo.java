@@ -11,7 +11,7 @@ public class Elfo extends Combatente {
     public void atacar(Combatente alvo) {
         Random r = new Random();
 
-        int dano = this.ataque + r.nextInt(8);
+        int dano = this.ataque + r.nextInt(10);
 
         if (arma != null) {
             dano += arma.calcularDanoExtra();
