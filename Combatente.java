@@ -25,7 +25,6 @@ public abstract class Combatente {
         System.out.println("\n--- 🎲 ROLAGEM DE ATRIBUTOS PARA " + nome.toUpperCase() + " ---");
 
         int dadoVida = rolarD20("Vida");
-        // <--- ALTERADO: Define a Vida Máxima baseada no dado e enche a vida atual
         this.vidaMaxima = 100 + (dadoVida * nivel);
         this.vida = this.vidaMaxima; 
 
