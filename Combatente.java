@@ -5,7 +5,7 @@ import java.util.Random;
 public abstract class Combatente {
     protected String nome;
     protected int vida;
-    protected int vidaMaxima; // <--- NOVA VARIÁVEL
+    protected int vidaMaxima; 
     protected int ataque;
     protected int defesa;
     protected int nivel;
