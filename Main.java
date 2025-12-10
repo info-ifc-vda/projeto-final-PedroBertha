@@ -30,7 +30,6 @@ public class Main {
             boolean treinando = true;
             
             while (treinando && heroi.estaVivo()) {
-                // Cria um inimigo para treino (Nível 1)
                 Combatente orc = new Orque("Orc Batedor", 1); 
                 orc.equiparArma(new Machado()); 
                 
@@ -163,9 +162,8 @@ public class Main {
         boolean escolhendo = true;
 
         while (escolhendo) {
-            // 1. MOSTRA O ESTADO ATUAL DA MOCHILA
             int qtdAtual = heroi.getItens().size();
-            int capacidadeMax = 10; // Definimos 10 como limite no Combatente
+            int capacidadeMax = 10;
             
             System.out.println("\n┌──────────────────────────────────────────┐");
             System.out.printf("│ 🎒 MOCHILA ATUAL: %-2d / %-2d                  │\n", qtdAtual, capacidadeMax);
@@ -180,7 +178,6 @@ public class Main {
             }
             System.out.println("└──────────────────────────────────────────┘");
 
-            // 2. MOSTRA AS OPÇÕES
             System.out.println("\nItens disponíveis para pegar:");
             System.out.println("1 - Poção de Vida   (+30 HP)");
             System.out.println("2 - Poção de Força  (+10 ATK)");
@@ -198,14 +195,12 @@ public class Main {
                 escolhendo = false;
             } else if (escolha >= 1 && escolha <= 3) {
                 
-                // Só adiciona se tiver espaço (Verificação visual aqui, mas o Combatente tbm barra)
                 if (qtdAtual < capacidadeMax) {
                     if (escolha == 1) heroi.adicionarItem(new PocaoVida());
                     if (escolha == 2) heroi.adicionarItem(new PocaoForca());
                     if (escolha == 3) heroi.adicionarItem(new PocaoDefesa());
                 } else {
                     System.out.println("❌ A mochila já está cheia! Remova itens ou vá lutar.");
-                    // Pausa rápida para ler a mensagem de erro
                     try { Thread.sleep(1000); } catch (Exception e) {}
                 }
 

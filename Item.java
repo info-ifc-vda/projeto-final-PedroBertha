@@ -10,6 +10,6 @@ public abstract class Item {
     }
 
     public void aplicarEfeito(Combatente combatente) {
-        throw new UnsupportedOperationException("Unimplemented method 'aplicarEfeito'");
-    }
+    throw new UnsupportedOperationException("Este item (" + this.nome + ") não pode ser consumido!");
+}
 }
