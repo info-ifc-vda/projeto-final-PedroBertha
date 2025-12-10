@@ -10,7 +10,6 @@ public abstract class Combatente {
     protected int nivel;
     protected Arma arma;
     
-    // XP e Inventário
     protected int xpAtual = 0;
     protected int xpParaProximoNivel;
     protected List<Item> itens = new ArrayList<>();
@@ -40,12 +39,10 @@ public abstract class Combatente {
         Random r = new Random();
         System.out.print("Rolando D20 para " + atributo + "... ");
         
-        // Pausa dramática de 0.5 segundos
         try { Thread.sleep(500); } catch (Exception e) {}
 
-        int resultado = r.nextInt(20) + 1; // Gera 1 a 20
+        int resultado = r.nextInt(20) + 1; 
         
-        // Feedback visual
         if (resultado == 20) System.out.println("🔥 CRÍTICO! (20)");
         else if (resultado == 1) System.out.println("💀 FALHA CRÍTICA! (1)");
         else System.out.println("🎲 " + resultado);
