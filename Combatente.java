@@ -5,6 +5,7 @@ import java.util.Random;
 public abstract class Combatente {
     protected String nome;
     protected int vida;
+    protected int vidaMaxima; // <--- NOVA VARIÁVEL
     protected int ataque;
     protected int defesa;
     protected int nivel;
@@ -24,7 +25,9 @@ public abstract class Combatente {
         System.out.println("\n--- 🎲 ROLAGEM DE ATRIBUTOS PARA " + nome.toUpperCase() + " ---");
 
         int dadoVida = rolarD20("Vida");
-        this.vida = 100 + (dadoVida * nivel);
+        // <--- ALTERADO: Define a Vida Máxima baseada no dado e enche a vida atual
+        this.vidaMaxima = 100 + (dadoVida * nivel);
+        this.vida = this.vidaMaxima; 
 
         int dadoAtaque = rolarD20("Força");
         this.ataque = 10 + dadoAtaque + nivel;
@@ -50,12 +53,12 @@ public abstract class Combatente {
         return resultado;
     }
 
-
     public void defender(int danoRecebido) {
         int danoReal = danoRecebido - this.defesa;
         if (danoReal < 0) danoReal = 0; 
         this.vida -= danoReal;
-        System.out.println(this.nome + " tomou " + danoReal + " de dano. (Vida: " + this.vida + ")");
+        // <--- Ajustei o print para mostrar barra de vida
+        System.out.println(this.nome + " tomou " + danoReal + " de dano. (Vida: " + this.vida + "/" + this.vidaMaxima + ")");
     }
     
     public void equiparArma(Arma arma) {
@@ -85,11 +88,14 @@ public abstract class Combatente {
         int aumentoAtaque = 2;
         int aumentoDefesa = 2;
 
-        this.vida += aumentoVida;
+        // <--- ALTERADO: Aumenta o balde (Max) e enche o balde (Atual)
+        this.vidaMaxima += aumentoVida;
+        this.vida = this.vidaMaxima;
+
         this.ataque += aumentoAtaque;
         this.defesa += aumentoDefesa;
         
-        System.out.println("❤️ Vida Máxima: +" + aumentoVida + " (Totalmente Recuperada!)");
+        System.out.println("❤️ Vida Máxima: " + this.vidaMaxima + " (Totalmente Recuperada!)");
         System.out.println("⚔️ Ataque: +" + aumentoAtaque + " -> " + this.ataque);
         System.out.println("🛡️ Defesa: +" + aumentoDefesa + " -> " + this.defesa);
     }
@@ -111,12 +117,20 @@ public abstract class Combatente {
 
     public void curar(int qtd) {
         this.vida += qtd;
-        System.out.println("✨ Recuperou " + qtd + " de vida!");
+        
+        // <--- ALTERADO: Impede que a vida ultrapasse o máximo
+        if (this.vida > this.vidaMaxima) {
+            this.vida = this.vidaMaxima;
+        }
+
+        System.out.println("✨ Recuperou " + qtd + " de vida! (" + this.vida + "/" + this.vidaMaxima + ")");
     }
+
     public void aumentarAtaque(int qtd) {
         this.ataque += qtd;
         System.out.println("💪 Ataque aumentou em " + qtd + "!");
     }
+    
     public void aumentarDefesa(int qtd) {
         this.defesa += qtd;
         System.out.println("🛡️ Defesa aumentou em " + qtd + "!");
@@ -125,15 +139,19 @@ public abstract class Combatente {
     public void mostrarFicha() {
         System.out.println("\n📜 FICHA: " + this.nome + " (Nv " + this.nivel + ")");
         System.out.println("🌟 XP: " + this.xpAtual + "/" + this.xpParaProximoNivel);
-        System.out.println("❤️ Vida:   " + this.vida);
+        // <--- ALTERADO: Mostra Vida Atual / Vida Máxima
+        System.out.println("❤️ Vida:   " + this.vida + "/" + this.vidaMaxima);
         System.out.println("⚔️ Ataque: " + this.ataque);
         System.out.println("🛡️ Defesa: " + this.defesa);
         if (arma != null) System.out.println("🗡️ Arma:   " + arma.getNome());
     }
 
     public boolean estaVivo() { return this.vida > 0; }
+    
+    // Getters
     public String getNome() { return nome; }
     public int getVida() { return vida; }
+    public int getVidaMaxima() { return vidaMaxima; } // Getter novo se precisar
     public int getAtaque() { return ataque; }
     public int getDefesa() { return defesa; }
     public int getNivel() { return nivel; }
